@@ -1,0 +1,8 @@
+.jfx-button:hover{
+    -fx-background-color:#6bdaf6;
+    -fx-text-alignment: center;
+}
+.jfx-button:pressed{
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 0, 0.0, -1, -1);
+    -fx-background-color:#1c91d5;
+}

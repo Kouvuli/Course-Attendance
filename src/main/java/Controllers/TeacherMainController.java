@@ -1,0 +1,52 @@
+package Controllers;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class TeacherMainController implements Initializable {
+    @FXML
+    private Label label;
+
+    @FXML
+    private VBox pnl_scroll;
+
+    @FXML
+    private void handleButtonAction(MouseEvent event) {
+        refreshNodes();
+    }
+
+    private void refreshNodes()
+    {
+        pnl_scroll.getChildren().clear();
+
+        Node[] nodes = new  Node[15];
+
+        for(int i = 0; i<2; i++)
+        {
+            try {
+                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/layouts/Item.fxml"));
+                pnl_scroll.getChildren().add(nodes[i]);
+
+            } catch (IOException ex) {
+                Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        refreshNodes();
+    }
+}
