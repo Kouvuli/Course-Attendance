@@ -20,11 +20,7 @@ public class Main extends Application {
         stage.setTitle("Course Attendance");
         stage.setScene(scene);
         stage.show();
-        ScheduleDAO dao=new ScheduleDAO();
-        ObservableList<Schedule> list=dao.getAll();
-        list.forEach(i->{
-            System.out.println(i.getCourse().getName()+"-"+i.getId()+"-"+i.getDayOfWeek()+"-"+i.getRoom());
-        });
+
 //        FXMLLoader loader2 = new FXMLLoader(Main.class.getResource("/teacher-main-view.fxml"));
 //        scene2 = new Scene(loader2.load(), 600, 400);
 //        stage.setScene(scene2);

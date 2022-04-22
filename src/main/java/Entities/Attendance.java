@@ -16,6 +16,7 @@ public class Attendance implements Serializable {
     private int studentId;
 
     @Id
+    @Temporal(TemporalType.DATE)
     private Date day;
 
     @Column(name = "IS_ATTEND")

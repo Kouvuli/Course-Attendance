@@ -14,21 +14,25 @@ public class Schedule implements Serializable {
     private int id;
 
     @Column(name = "DATE_START")
+    @Temporal(TemporalType.DATE)
     private Date dateStart;
 
     @Column(name = "DATE_END")
+    @Temporal(TemporalType.DATE)
     private Date dateEnd;
 
     @Column(name = "DAY_OF_WEEK")
     private String dayOfWeek;
 
-    @Column(name = "TIME_START")
-    private String timeStart;
+    @Column(name = "SHIFT_START")
+    private String shiftStart;
 
-    @Column(name = "TIME_END")
-    private String timeEnd;
+    @Column(name = "SHIFT_END")
+    private String shiftEnd;
 
     private String room;
+    private String term;
+    private String year;
 
     @OneToMany(mappedBy="schedule")
     private Set<Attendance> attendances;
@@ -42,40 +46,13 @@ public class Schedule implements Serializable {
     private Course course;
 
     public Schedule(){};
-    public int getId() {
-        return id;
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 
-    public Date getDateStart() {
-        return dateStart;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public String getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public String getTimeStart() {
-        return timeStart;
-    }
-
-    public String getTimeEnd() {
-        return timeEnd;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public Course getCourse() {
-        return course;
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public void setId(int id) {
@@ -94,16 +71,28 @@ public class Schedule implements Serializable {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
+    public void setShiftStart(String shiftStart) {
+        this.shiftStart = shiftStart;
     }
 
-    public void setTimeEnd(String timeEnd) {
-        this.timeEnd = timeEnd;
+    public void setShiftEnd(String shiftEnd) {
+        this.shiftEnd = shiftEnd;
     }
 
     public void setRoom(String room) {
         this.room = room;
+    }
+
+    public void setAttendances(Set<Attendance> attendances) {
+        this.attendances = attendances;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public String getYear() {
+        return year;
     }
 
     public void setTeacher(Teacher teacher) {
@@ -112,5 +101,45 @@ public class Schedule implements Serializable {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public String getShiftStart() {
+        return shiftStart;
+    }
+
+    public String getShiftEnd() {
+        return shiftEnd;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public Set<Attendance> getAttendances() {
+        return attendances;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public Course getCourse() {
+        return course;
     }
 }

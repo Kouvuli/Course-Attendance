@@ -1,9 +1,12 @@
 package Controllers;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -16,37 +19,38 @@ import java.util.logging.Logger;
 
 public class TeacherMainController implements Initializable {
     @FXML
-    private Label label;
+    private JFXButton attendanceBtn;
 
     @FXML
-    private VBox pnl_scroll;
+    private VBox content;
 
     @FXML
-    private void handleButtonAction(MouseEvent event) {
-        refreshNodes();
-    }
+    private JFXButton courseBtn;
 
-    private void refreshNodes()
-    {
-        pnl_scroll.getChildren().clear();
+    @FXML
+    private JFXButton scheduleBtn;
 
-        Node[] nodes = new  Node[15];
-
-        for(int i = 0; i<2; i++)
-        {
-            try {
-                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/layouts/Item.fxml"));
-                pnl_scroll.getChildren().add(nodes[i]);
-
-            } catch (IOException ex) {
-                Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        refreshNodes();
+
+
+    }
+
+    public void courseHandler(ActionEvent event) {
+
+    }
+
+    public void scheduleHanler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/teacher-schedule-view.fxml"));
+        Parent root = null;
+        root = (Parent) loader.load();
+        TeacherScheduleController controller = loader.getController();
+
+        content.getChildren().setAll(root);
+
+    }
+
+    public void attendanceHanler(ActionEvent event) {
     }
 }
