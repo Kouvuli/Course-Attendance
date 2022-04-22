@@ -7,24 +7,31 @@ import Utils.HibernateUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class TeacherDAO implements DAOInterface {
+public class TeacherDAO implements DAOInterface<Teacher> {
     @Override
-    public int addData(Object data) {
+    public int addData(Teacher data) {
+        Session session=HibernateUtils.getFACTORY().openSession();
+        Transaction transaction=session.beginTransaction();
+        session.save(data);
+        transaction.commit();
+        session.close();
         return 0;
     }
 
     @Override
-    public int delData(Object data) {
+    public int delData(Teacher data) {
         return 0;
     }
 
     @Override
-    public int updateData(Object newData) {
+    public int updateData(Teacher oldData, Teacher newData) {
         return 0;
     }
 
@@ -35,6 +42,18 @@ public class TeacherDAO implements DAOInterface {
         CriteriaQuery query = cb.createQuery(Teacher.class);
         query.from(Teacher.class);
         List<Teacher> list=session.createQuery(query).getResultList();
+        session.close();
         return FXCollections.observableArrayList(list);
+    }
+
+    public Teacher getTeacherById(int id){
+        Session session= HibernateUtils.getFACTORY().openSession();
+        CriteriaBuilder cb=session.getCriteriaBuilder();
+        CriteriaQuery query = cb.createQuery(Teacher.class);
+        Root<Teacher> root=query.from(Teacher.class);
+        query.where(cb.equal(root.get("id").as(Integer.class),id));
+        Teacher teacher= (Teacher) session.createQuery(query).getSingleResult();
+        session.close();
+        return teacher;
     }
 }

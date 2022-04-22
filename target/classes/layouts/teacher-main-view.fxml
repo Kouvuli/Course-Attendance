@@ -36,7 +36,7 @@
         </Pane>
         <VBox layoutX="-1.0" layoutY="145.0" prefHeight="438.0" prefWidth="252.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="146.0">
             <children>
-                <Label prefHeight="30.0" prefWidth="252.0" text="SOMETHING" textFill="#171717">
+                <Label prefHeight="30.0" prefWidth="252.0" text="PHÒNG GIÁO VỤ" textFill="#171717">
                     <font>
                         <Font size="13.0" />
                     </font>
@@ -47,7 +47,7 @@
                         <Insets top="60.0" />
                     </VBox.margin>
                 </Label>
-                <JFXButton fx:id="scheduleBtn" onAction="#scheduleHanler" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Thời khóa biểu" textFill="#5b5858">
+                <JFXButton fx:id="scheduleBtn" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#scheduleHanler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Thời khóa biểu" textFill="#5b5858">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -65,7 +65,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton fx:id="attendanceBtn" onAction="#attendanceHanler" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Điểm danh" textFill="#5b5858">
+                <JFXButton fx:id="attendanceBtn" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#attendanceHanler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Điểm danh" textFill="#5b5858">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -83,7 +83,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton fx:id="courseBtn" onAction="#courseHandler" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Lớp học" textFill="#5b5858">
+                <JFXButton fx:id="courseBtn" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#courseHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Lớp học" textFill="#5b5858">
                     <font>
                         <Font size="13.0" />
                     </font>

@@ -28,8 +28,9 @@ public class Student implements Serializable {
     private Set<Attendance> attendances;
 
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "students")
     private Set<Course> courses=new HashSet<>();
+
     public Student(){}
 
     public void setId(int id) {

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NewScheduleDialogController">
+   <center>
+      <VBox>
+         <children>
+            <HBox layoutX="10.0" layoutY="10.0" spacing="50.0">
+               <children>
+                  <Text  strokeType="OUTSIDE" strokeWidth="0.0" text="ID Giáo viên">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="teacherIdTxt" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="53.0">
+               <children>
+                  <Text fx:id="teacherIdTxt1" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Môn học">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="courseIdTxt" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" spacing="44.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày bắt đầu">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <DatePicker fx:id="dateStartPicker" prefHeight="26.0" prefWidth="149.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" spacing="41.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày kết thúc">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <DatePicker fx:id="dateEndPicker" prefHeight="26.0" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" spacing="95.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thứ">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="dayOfWeekTxt">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" spacing="58.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ca bắt đầu">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="shiftStartTxt">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="103.0" spacing="55.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ca kết thúc">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="shiftEndTxt">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" spacing="77.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phòng ">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="roomTxt">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="196.0" spacing="78.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Học kỳ">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="termTxt">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="242.0" spacing="66.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Năm học">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextField fx:id="yearTxt">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#confirmHandler" text="Confirm" />
+            <Button mnemonicParsing="false" onAction="#cancelHandler" text="Cancel" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>

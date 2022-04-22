@@ -15,47 +15,65 @@
    <children>
       <BorderPane>
          <top>
-            <HBox spacing="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TextField fx:id="searchField" prefHeight="26.0" prefWidth="169.0" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng hiển thị">
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Text>
-                  <TextField fx:id="perPage" layoutX="827.0" layoutY="10.0" prefHeight="26.0" prefWidth="56.0" text="2">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin></TextField>
-                  <Text layoutX="634.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thứ">
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Text>
-                  <ComboBox fx:id="dayOfWeekCBox" layoutX="681.0" layoutY="10.0" onAction="#dayOfWeekHandler" prefHeight="26.0" prefWidth="56.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Học kỳ">
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Text>
-                  <ComboBox fx:id="termCBox" onAction="#termCBoxHandler" prefHeight="26.0" prefWidth="56.0">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Năm học">
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Text>
-                  <ComboBox fx:id="yearCBox" onAction="#yearCBoxHandler" prefWidth="150.0" />
-                  <Button fx:id="applyBtn" onAction="#applyHandler" mnemonicParsing="false" text="Xem" />
-               </children>
+            <VBox BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" />
                </BorderPane.margin>
-            </HBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Region HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Region>
+                        <Button mnemonicParsing="false" onAction="#addHandler" text="Thêm" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <TextField fx:id="searchField" prefHeight="26.0" prefWidth="169.0" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng hiển thị">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <TextField fx:id="perPage" layoutX="827.0" layoutY="10.0" prefHeight="26.0" prefWidth="56.0" text="2">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Text layoutX="634.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thứ">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="dayOfWeekCBox" layoutX="681.0" layoutY="10.0" onAction="#dayOfWeekHandler" prefHeight="26.0" prefWidth="56.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Học kỳ">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="termCBox" onAction="#termCBoxHandler" prefHeight="26.0" prefWidth="56.0">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Năm học">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="yearCBox" onAction="#yearCBoxHandler" prefWidth="150.0" />
+                        <Button mnemonicParsing="false" onAction="#applyHandler" text="Xem" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </top>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

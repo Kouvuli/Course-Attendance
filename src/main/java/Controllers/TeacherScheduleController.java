@@ -1,5 +1,6 @@
 package Controllers;
 
+import DAO.CourseDAO;
 import DAO.ScheduleDAO;
 import Entities.Schedule;
 import Models.ScheduleRow;
@@ -13,8 +14,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
@@ -52,8 +59,6 @@ public class TeacherScheduleController implements Initializable {
 //
 //    @FXML
 //    private TableColumn<ScheduleRow, String> timeStartCol;
-    @FXML
-    private Button applyBtn;
 
     @FXML
     private ComboBox<String> dayOfWeekCBox;
@@ -71,7 +76,8 @@ public class TeacherScheduleController implements Initializable {
 
     @FXML
     private TextField searchField;
-
+    @FXML
+    private Button addBtn;
     private int currPage=1;
     private int totalPage;
     private int perPageNum;
@@ -129,6 +135,8 @@ public class TeacherScheduleController implements Initializable {
         }
 
     }
+
+
     public void refreshTable(){
         pagination.setCurrentPageIndex(0);
         ScheduleDAO dao=new ScheduleDAO();
@@ -177,8 +185,16 @@ public class TeacherScheduleController implements Initializable {
         TableColumn<ScheduleRow, String> yearCol = new TableColumn<>("Năm học");
         yearCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, String>("year"));
         yearCol.setPrefWidth(100);
-
-        table.getColumns().addAll(idCol, nameCol, dateStartCol,dateEndCol,dayOfWeekCol,timeStartCol,timeEndCol,roomCol,termCol,yearCol);
+        TableColumn<ScheduleRow, Button> attendancesBtnCol = new TableColumn<>("Điểm danh");
+        attendancesBtnCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, Button>("attendancesBtn"));
+        attendancesBtnCol.setPrefWidth(100);
+        TableColumn<ScheduleRow, Button> editCol = new TableColumn<>("Sửa");
+        editCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, Button>("editBtn"));
+        editCol.setPrefWidth(100);
+        TableColumn<ScheduleRow, Button> deleteCol = new TableColumn<>("Xóa");
+        deleteCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, Button>("deleteBtn"));
+        deleteCol.setPrefWidth(100);
+        table.getColumns().addAll(idCol, nameCol, dateStartCol,dateEndCol,dayOfWeekCol,timeStartCol,timeEndCol,roomCol,termCol,yearCol,attendancesBtnCol,editCol,deleteCol);
 
         return table;
     }
@@ -190,8 +206,36 @@ public class TeacherScheduleController implements Initializable {
         ObservableList<Schedule> resultList = dao.getPagination(pageNum, perPage,term,year,dayOfWeek);
 
         resultList.forEach(i -> {
-            ScheduleRow r = new ScheduleRow(i.getId(), i.getDateStart(), i.getDateEnd(), i.getDayOfWeek(), i.getShiftStart(), i.getShiftEnd(), i.getRoom(), i.getTeacher(), i.getCourse(), i.getCourse().getName(),i.getTerm(),i.getYear());
+            Image img1 = new Image("/images/pencil.png");
+            Image img2 = new Image("/images/XCircle.png");
+            Image img3=new Image("/images/ClipboardListOutline.png");
+            ImageView imageView1 = new ImageView(img1);
+            ImageView imageView2 = new ImageView(img2);
+            ImageView imageView3=new ImageView(img3);
+            imageView1.setFitHeight(14);
+            imageView1.setPreserveRatio(true);
+            imageView2.setFitHeight(14);
+            imageView2.setPreserveRatio(true);
+            imageView3.setFitHeight(14);
+            imageView3.setPreserveRatio(true);
+
+            Button editBtn=new Button();
+            addEditBtnHandler(editBtn,i);
+            editBtn.setGraphic(imageView1);
+
+            Button deleteBtn=new Button();
+            deleteBtn.setGraphic(imageView2);
+            addDeleteBtnHandler(deleteBtn,i);
+
+            Button attendancesBtn=new Button();
+            attendancesBtn.setGraphic((imageView3));
+            addAttendanceBtnHandler(attendancesBtn,i);
+            ScheduleRow r = new ScheduleRow(i.getId(), i.getDateStart(),
+                    i.getDateEnd(), i.getDayOfWeek(), i.getShiftStart(),
+                    i.getShiftEnd(), i.getRoom(), i.getTeacher(), i.getCourse(),
+                    i.getCourse().getName(),i.getTerm(),i.getYear(),attendancesBtn,editBtn,deleteBtn);
             scheduleRows.add(r);
+
         });
         FilteredList<ScheduleRow> filteredListData = new FilteredList<>(FXCollections.observableArrayList(scheduleRows), b -> true);
         searchField.textProperty().addListener((observableValue, s, t1) -> {
@@ -213,6 +257,41 @@ public class TeacherScheduleController implements Initializable {
         return view;
     }
 
+    private void addDeleteBtnHandler(Button deleteBtn, Schedule schedule) {
+        deleteBtn.setOnAction(event -> {
+            ScheduleDAO dao=new ScheduleDAO();
+            dao.delData(schedule);
+
+        });
+    }
+
+    private void addAttendanceBtnHandler(Button attendancesBtn, Schedule i) {
+
+    }
+
+    private void addEditBtnHandler(Button editBtn, Schedule schedule) {
+        editBtn.setOnAction(event -> {
+            Stage window = new Stage();
+
+            window.initModality(Modality.APPLICATION_MODAL);
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/edit-schedule-dialog.fxml"));
+            EditScheduleDialogController controller=new EditScheduleDialogController();
+            controller.setValue(schedule);
+            loader.setController(controller);
+
+            Parent root= null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene editScene = new Scene(root);
+            window.setTitle("Edit Schedule");
+            window.setScene(editScene);
+            window.show();
+        });
+    }
+
     public void termCBoxHandler(ActionEvent event) {
         term=termCBox.getValue();
     }
@@ -228,5 +307,22 @@ public class TeacherScheduleController implements Initializable {
 
     public void dayOfWeekHandler(ActionEvent event) {
         dayOfWeek=dayOfWeekCBox.getValue();
+    }
+
+    public void addHandler(ActionEvent event) {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/new-schedule-dialog.fxml"));
+        Parent root= null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene editScene = new Scene(root);
+        window.setTitle("Add Schedule");
+        window.setScene(editScene);
+        window.show();
+
     }
 }

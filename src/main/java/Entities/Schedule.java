@@ -2,8 +2,8 @@ package Entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -35,7 +35,7 @@ public class Schedule implements Serializable {
     private String year;
 
     @OneToMany(mappedBy="schedule")
-    private Set<Attendance> attendances;
+    private Set<Attendance> attendances=new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "TEACHER_ID", referencedColumnName = "ID")
@@ -46,7 +46,29 @@ public class Schedule implements Serializable {
     private Course course;
 
     public Schedule(){};
-
+    public  Schedule(int id,Date dateStart,Date dateEnd,String dayOfWeek,String shiftStart,String shiftEnd,String room,String term,String year){
+        this.id=id;
+        this.dateStart=dateStart;
+        this.dateEnd=dateEnd;
+        this.dayOfWeek = dayOfWeek;
+        this.shiftEnd=shiftEnd;
+        this.shiftStart=shiftStart;
+        this.room=room;
+        this.term=term;
+        this.year=year;
+    }
+    public  Schedule(Course course,Teacher teacher,Date dateStart,Date dateEnd,String dayOfWeek,String shiftStart,String shiftEnd,String room,String term,String year){
+        this.course=course;
+        this.teacher=teacher;
+        this.dateStart=dateStart;
+        this.dateEnd=dateEnd;
+        this.dayOfWeek = dayOfWeek;
+        this.shiftEnd=shiftEnd;
+        this.shiftStart=shiftStart;
+        this.room=room;
+        this.term=term;
+        this.year=year;
+    }
     public void setTerm(String term) {
         this.term = term;
     }

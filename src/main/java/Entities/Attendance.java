@@ -7,15 +7,11 @@ import java.util.Date;
 @Entity
 @Table(name = "ATTENDANCE")
 public class Attendance implements Serializable {
-    @Id
-    @Column(name = "SCHEDULE_ID")
-    private int scheduleId;
 
     @Id
-    @Column(name = "STUDENT_ID")
-    private int studentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Id
     @Temporal(TemporalType.DATE)
     private Date day;
 
@@ -33,13 +29,19 @@ public class Attendance implements Serializable {
 
     public Attendance(){}
 
-    public void setScheduleId(int scheduleId) {
-        this.scheduleId = scheduleId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+
 
     public void setDay(Date day) {
         this.day = day;
@@ -49,12 +51,16 @@ public class Attendance implements Serializable {
         isAttend = attend;
     }
 
-    public int getScheduleId() {
-        return scheduleId;
+    public int getId() {
+        return id;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public Student getStudent() {
+        return student;
     }
 
     public Date getDay() {

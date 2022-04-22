@@ -37,8 +37,13 @@ public class TeacherMainController implements Initializable {
 
     }
 
-    public void courseHandler(ActionEvent event) {
+    public void courseHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/teacher-course-view.fxml"));
+        Parent root = null;
+        root = (Parent) loader.load();
+        TeacherCourseController controller = loader.getController();
 
+        content.getChildren().setAll(root);
     }
 
     public void scheduleHanler(ActionEvent event) throws IOException {

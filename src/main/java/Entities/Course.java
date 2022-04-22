@@ -9,27 +9,49 @@ import java.util.Set;
 @Table(name = "COURSE")
 public class Course implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String name;
 
-    @OneToMany(mappedBy = "course")
-    private Set<Schedule> schedules;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "course")
+    private Set<Schedule> schedules=new HashSet<>();
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
     @JoinTable(
             name = "ENROLL_COURSE",
             joinColumns = { @JoinColumn(name = "COURSE_ID",referencedColumnName = "ID") },
             inverseJoinColumns = { @JoinColumn(name = "STUDENT_ID",referencedColumnName = "ID") }
     )
     Set<Student> students = new HashSet<>();
+
+    public Course(){}
+    public Course(String id,String name){
+        this.id=id;
+        this.name=name;
+    }
+
+    public void setSchedules(Set<Schedule> schedules) {
+        this.schedules = schedules;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
     }
 
     public String getId() {
