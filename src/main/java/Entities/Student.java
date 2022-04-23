@@ -1,7 +1,10 @@
 package Entities;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,14 +20,18 @@ public class Student implements Serializable {
 
     private int phone;
 
-    private String birthday;
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
 
     private String email;
 
     private String username;
     private String password;
 
-    @OneToMany(mappedBy="student")
+    @Column(name = "IS_FIRST")
+    private boolean isFirst;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="student")
     private Set<Attendance> attendances;
 
 
@@ -32,6 +39,30 @@ public class Student implements Serializable {
     private Set<Course> courses=new HashSet<>();
 
     public Student(){}
+
+    public Student(int id,String name,String cmnd,String phone,Date birthday,String email){
+        this.id=id;
+        this.name=name;
+        this.cmnd=cmnd;
+        this.phone = Integer.parseInt(phone);
+        this.birthday=birthday;
+        this.email=email;
+        isFirst=true;
+        username=String.valueOf(id);
+        password= BCrypt.hashpw(username,BCrypt.gensalt(12));
+    }
+
+    public void setAttendances(Set<Attendance> attendances) {
+        this.attendances = attendances;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void setFirst(boolean first) {
+        isFirst = first;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -49,7 +80,7 @@ public class Student implements Serializable {
         this.phone = phone;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -63,6 +94,18 @@ public class Student implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean getIsFirst() {
+        return isFirst;
+    }
+
+    public Set<Attendance> getAttendances() {
+        return attendances;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
     }
 
     public int getId() {
@@ -81,7 +124,7 @@ public class Student implements Serializable {
         return phone;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 

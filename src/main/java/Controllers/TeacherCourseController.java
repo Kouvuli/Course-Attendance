@@ -6,6 +6,7 @@ import Entities.Course;
 import Entities.Schedule;
 import Models.CourseRow;
 import Models.ScheduleRow;
+import Models.StudentRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -87,13 +88,14 @@ public class TeacherCourseController implements Initializable {
 
         TableView<CourseRow> table = new TableView<>();
 
-        TableColumn<CourseRow, String> idCol = new TableColumn<>("Mã môn");
+        TableColumn<CourseRow, String> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<CourseRow, String>("id"));
         idCol.setPrefWidth(100);
 
         TableColumn<CourseRow, String> nameCol = new TableColumn<>("Tên môn học");
         nameCol.setCellValueFactory(new PropertyValueFactory<CourseRow, String>("name"));
         nameCol.setPrefWidth(330);
+
 
         TableColumn<CourseRow, Button> editBtnCol = new TableColumn<>("Sửa");
         editBtnCol.setCellValueFactory(new PropertyValueFactory<CourseRow, Button>("editBtn"));
@@ -129,7 +131,7 @@ public class TeacherCourseController implements Initializable {
                 e.printStackTrace();
             }
             Scene editScene = new Scene(root);
-            window.setTitle("Edit Course");
+            window.setTitle("Sửa môn học");
             window.setScene(editScene);
             window.show();
         });
@@ -198,7 +200,7 @@ public class TeacherCourseController implements Initializable {
             e.printStackTrace();
         }
         Scene scene = new Scene(root);
-        window.setTitle("Add Course");
+        window.setTitle("Thêm môn học");
         window.setScene(scene);
         window.show();
     }

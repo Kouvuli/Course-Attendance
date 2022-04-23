@@ -17,17 +17,17 @@
     <children>
         <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1062.0" styleClass="head-background" stylesheets="@../styles/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label layoutX="224.0" layoutY="47.0" text="KeepToo" textFill="WHITE">
+                <Label fx:id="username" layoutX="224.0" layoutY="47.0" text="KeepToo" textFill="WHITE">
                     <font>
                         <Font size="36.0" />
                     </font>
                 </Label>
-                <Label layoutX="227.0" layoutY="100.0" text="Since 2015" textFill="WHITE">
+                <Label fx:id="userIdLabel" layoutX="227.0" layoutY="100.0" text="Since 2015" textFill="WHITE">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
-                <JFXButton layoutX="1041.0" layoutY="95.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="163.0" ripplerFill="WHITE" style="-fx-background-color: #473E98;" text="EDIT PROFILE" textFill="WHITE">
+                <JFXButton layoutX="1041.0" layoutY="95.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="163.0" ripplerFill="WHITE" style="-fx-background-color: #2F4B80;" text="EDIT PROFILE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
@@ -47,7 +47,7 @@
                         <Insets top="60.0" />
                     </VBox.margin>
                 </Label>
-                <JFXButton fx:id="scheduleBtn" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#scheduleHanler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Thời khóa biểu" textFill="#5b5858">
+                <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#scheduleHanler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Thời khóa biểu" textFill="#5b5858">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -65,7 +65,7 @@
                         <Insets left="50.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton fx:id="attendanceBtn" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#attendanceHanler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Điểm danh" textFill="#5b5858">
+                <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#attendanceHanler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Điểm danh" textFill="#5b5858">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -83,14 +83,14 @@
                         <Insets left="50.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton fx:id="courseBtn" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#courseHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Lớp học" textFill="#5b5858">
+                <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#courseHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Môn học" textFill="#5b5858">
                     <font>
                         <Font size="13.0" />
                     </font>
                     <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/UserGroupOutline.png" />
+                                <Image url="@../images/BookOpenOutline.png" />
                             </image>
                             <viewport>
                                 <Rectangle2D />
@@ -101,7 +101,43 @@
                         <Insets left="50.0" />
                     </padding>
                 </JFXButton>
-                <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Đăng xuất" textFill="#5b5858">
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="187.0" onAction="#studentHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Sinh viên" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/UserGroupOutline.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="230.0" onAction="#teacherHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Giáo viên" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/UsersOutline.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+                <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#logOutHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Đăng xuất" textFill="#5b5858">
                     <font>
                         <Font size="13.0" />
                     </font>
@@ -133,9 +169,9 @@
                 <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
             </effect>
         </Pane>
-        <ScrollPane layoutX="251.0" layoutY="156.0" prefHeight="458.0" prefWidth="1019.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="156.0">
+        <ScrollPane layoutX="251.0" layoutY="156.0" prefHeight="458.0" prefWidth="1013.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="156.0">
             <content>
-                <VBox fx:id="content" prefHeight="446.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;" />
+                <VBox fx:id="content" prefHeight="455.0" prefWidth="1010.0" spacing="20.0" style="-fx-background-color: #fff;" />
             </content>
         </ScrollPane>
     </children>

@@ -10,50 +10,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="500.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherCourseController">
-    <children>
-        <BorderPane>
-            <top>
-            <VBox BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="10.0" />
-               </BorderPane.margin>
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherCourseController">
+      <top>
+      <VBox BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox>
                <children>
-                  <HBox>
-                     <children>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#addHandler" text="Thêm" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                      <HBox spacing="10.0">
-                          <children>
-                              <TextField fx:id="searchField" prefHeight="26.0" prefWidth="169.0" />
-                              <Region HBox.hgrow="ALWAYS" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng hiển thị">
-                                  <HBox.margin>
-                                      <Insets top="5.0" />
-                                  </HBox.margin>
-                              </Text>
-                              <TextField fx:id="perPage" layoutX="827.0" layoutY="10.0" prefHeight="26.0" prefWidth="56.0" text="2">
-                                  <HBox.margin>
-                                      <Insets right="5.0" />
-                                  </HBox.margin>
-                        </TextField>
-                              <Button fx:id="applyBtn" mnemonicParsing="false" onAction="#applyHandler" text="Xem" />
-                          </children>
-                      </HBox>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#addHandler" text="Thêm" />
                </children>
-            </VBox>
-            </top>
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
-            <center>
-                <Pagination fx:id="pagination" />
-            </center>
-        </BorderPane>
-    </children>
-</VBox>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchField" promptText="TÌm kiếm theo ID, tên" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng hiển thị">
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <TextField fx:id="perPage" layoutX="827.0" layoutY="10.0" prefHeight="26.0" prefWidth="56.0" text="2">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                  </TextField>
+                        <Button fx:id="applyBtn" mnemonicParsing="false" onAction="#applyHandler" text="Xem" />
+                    </children>
+                </HBox>
+         </children>
+      </VBox>
+      </top>
+      <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+      <center>
+          <Pagination fx:id="pagination" />
+      </center>
+  </BorderPane>

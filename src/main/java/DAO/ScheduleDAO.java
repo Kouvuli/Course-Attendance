@@ -31,10 +31,10 @@ public class ScheduleDAO implements DAOInterface<Schedule> {
     public int delData(Schedule data) {
         Session session=HibernateUtils.getFACTORY().openSession();
         Transaction transaction=session.beginTransaction();
-        Schedule course = session.get(Schedule.class, data.getId());
-        if (course != null) {
+        Schedule schedule = session.get(Schedule.class, data.getId());
+        if (schedule != null) {
 
-            session.delete(course);
+            session.delete(schedule);
         }
         transaction.commit();
         session.close();

@@ -30,8 +30,8 @@ public class NewCourseDialogController implements Initializable {
     void confirmHandler(ActionEvent event) {
         if(!isInputValid()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Giá trị không hợp lệ!");
+            alert.setTitle("Lỗi");
+            alert.setContentText("Dữ liệu nhập không hợp lệ!");
             alert.showAndWait();
         }
         else{
@@ -49,7 +49,7 @@ public class NewCourseDialogController implements Initializable {
                 window.close();
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
+                alert.setTitle("Lỗi");
                 alert.setContentText("Môn học đã tồn tại!");
                 alert.showAndWait();
             }

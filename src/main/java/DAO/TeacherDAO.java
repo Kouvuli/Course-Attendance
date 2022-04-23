@@ -56,4 +56,15 @@ public class TeacherDAO implements DAOInterface<Teacher> {
         session.close();
         return teacher;
     }
+    public Teacher getTeacherByUsername(String username){
+        Session session= HibernateUtils.getFACTORY().openSession();
+        CriteriaBuilder cb=session.getCriteriaBuilder();
+        CriteriaQuery query = cb.createQuery(Teacher.class);
+        Root<Teacher> root = query.from(Teacher.class);
+        String s=String.format("%%%s%%",username);
+        query.where(cb.like(root.get("username").as(String.class),s));
+        Teacher student=(Teacher) session.createQuery(query.select(root)).getSingleResult();
+        session.close();
+        return student;
+    }
 }

@@ -44,16 +44,16 @@ public class EditScheduleDialogController implements Initializable {
     @FXML
     private TextField yearTxt;
 
-    int id;
-    Date dateStart;
-    Date dateEnd;
-    String dayOfWeek;
-    String shiftStart;
-    String shiftEnd;
-    String room;
-    String term;
-    String year;
-    Schedule oldSchedule;
+    private int id;
+    private Date dateStart;
+    private Date dateEnd;
+    private String dayOfWeek;
+    private String shiftStart;
+    private String shiftEnd;
+    private String room;
+    private String term;
+    private String year;
+    private Schedule oldSchedule;
     @FXML
     void cancelHandler(ActionEvent event) {
         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();

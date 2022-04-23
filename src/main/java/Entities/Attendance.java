@@ -15,8 +15,6 @@ public class Attendance implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date day;
 
-    @Column(name = "IS_ATTEND")
-    private boolean isAttend;
 
     @ManyToOne
     @JoinColumn(name = "SCHEDULE_ID", referencedColumnName = "ID")
@@ -47,9 +45,6 @@ public class Attendance implements Serializable {
         this.day = day;
     }
 
-    public void setAttend(boolean attend) {
-        isAttend = attend;
-    }
 
     public int getId() {
         return id;
@@ -67,7 +62,5 @@ public class Attendance implements Serializable {
         return day;
     }
 
-    public boolean isAttend() {
-        return isAttend;
-    }
+
 }

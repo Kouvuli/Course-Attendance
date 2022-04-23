@@ -286,7 +286,7 @@ public class TeacherScheduleController implements Initializable {
                 e.printStackTrace();
             }
             Scene editScene = new Scene(root);
-            window.setTitle("Edit Schedule");
+            window.setTitle("Sửa thời khóa biểu");
             window.setScene(editScene);
             window.show();
         });
@@ -320,7 +320,7 @@ public class TeacherScheduleController implements Initializable {
             e.printStackTrace();
         }
         Scene editScene = new Scene(root);
-        window.setTitle("Add Schedule");
+        window.setTitle("Thêm thời khóa biểu");
         window.setScene(editScene);
         window.show();
 

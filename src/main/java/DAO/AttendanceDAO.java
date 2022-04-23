@@ -1,6 +1,7 @@
 package DAO;
 
 import Entities.Attendance;
+import Entities.Schedule;
 import Entities.Student;
 import Interfaces.DAOInterface;
 import Utils.HibernateUtils;
@@ -26,6 +27,16 @@ public class AttendanceDAO implements DAOInterface<Attendance> {
 
     @Override
     public int delData(Attendance data) {
+
+        Session session=HibernateUtils.getFACTORY().openSession();
+        Transaction transaction=session.beginTransaction();
+        Attendance attendance = session.get(Attendance.class, data.getId());
+        if (attendance != null) {
+            session.delete(attendance);
+        }
+        transaction.commit();
+        session.close();
+
         return 0;
     }
 

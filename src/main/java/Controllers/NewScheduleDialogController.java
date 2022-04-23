@@ -61,8 +61,8 @@ public class NewScheduleDialogController implements Initializable {
 
         if(!isInputValid()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Giá trị không hợp lệ!");
+            alert.setTitle("Lỗi");
+            alert.setContentText("Dữ liệu nhập không hợp lệ!");
             alert.showAndWait();
         }
         else {
@@ -76,7 +76,7 @@ public class NewScheduleDialogController implements Initializable {
                 a=courseDAO.getCourseById(courseIdTxt.getText());
             }catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
+                alert.setTitle("Lỗi");
                 alert.setContentText("Id lớp học không tồn tại!");
                 alert.showAndWait();
             }
@@ -84,7 +84,7 @@ public class NewScheduleDialogController implements Initializable {
                 b=teacherDAO.getTeacherById(Integer.parseInt(teacherIdTxt.getText()));
             }catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
+                alert.setTitle("Lỗi");
                 alert.setContentText("Id giáo viên không tồn tại!");
                 alert.showAndWait();
             }
@@ -103,7 +103,7 @@ public class NewScheduleDialogController implements Initializable {
                     window.close();
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
+                    alert.setTitle("Lỗi");
                     alert.setContentText("Lịch đã tồn tại!");
                     alert.showAndWait();
                 }
