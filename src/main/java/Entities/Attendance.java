@@ -27,6 +27,13 @@ public class Attendance implements Serializable {
 
     public Attendance(){}
 
+    public Attendance(Date day, Schedule schedule, Student student) {
+
+        this.day = day;
+        this.schedule = schedule;
+        this.student = student;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

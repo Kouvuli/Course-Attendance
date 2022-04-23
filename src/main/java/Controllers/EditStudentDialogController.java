@@ -52,7 +52,7 @@ public class EditStudentDialogController implements Initializable {
     @FXML
     void confirmHandler(ActionEvent event) {
         StudentDAO studentDAO = new StudentDAO();
-        Student newStudent=new Student(id,studentNameTxt.getText(),studentCMNDTxt.getText(),phoneNumberTxt.getText() ,Date.from(studentBirthday.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),emailTxt.getText());
+        Student newStudent=new Student(id,studentNameTxt.getText(),studentCMNDTxt.getText(),Integer.parseInt(phoneNumberTxt.getText()) ,Date.from(studentBirthday.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),emailTxt.getText());
         studentDAO.updateData(oldStudent,newStudent);
         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
         window.close();

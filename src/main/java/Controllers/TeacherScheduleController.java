@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 
@@ -259,14 +260,30 @@ public class TeacherScheduleController implements Initializable {
 
     private void addDeleteBtnHandler(Button deleteBtn, Schedule schedule) {
         deleteBtn.setOnAction(event -> {
-            ScheduleDAO dao=new ScheduleDAO();
+            ScheduleDAO dao = new ScheduleDAO();
             dao.delData(schedule);
 
         });
     }
 
-    private void addAttendanceBtnHandler(Button attendancesBtn, Schedule i) {
-
+    private void addAttendanceBtnHandler(Button attendancesBtn, Schedule schedule) {
+        attendancesBtn.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/teacher-attendance-view.fxml"));
+            TeacherAttendanceController controller = new TeacherAttendanceController();
+            controller.setValue(schedule.getId(), schedule.getDateStart(),schedule.getAttendances());
+            loader.setController(controller);
+            Stage window=new Stage();
+            Parent root= null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene=new Scene(root);
+            window.setTitle("Điểm danh");
+            window.setScene(scene);
+            window.show();
+        });
     }
 
     private void addEditBtnHandler(Button editBtn, Schedule schedule) {

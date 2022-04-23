@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class AttendanceDAO implements DAOInterface<Attendance> {
@@ -59,7 +60,17 @@ public class AttendanceDAO implements DAOInterface<Attendance> {
         List<Attendance> list=session.createQuery(query).getResultList();
         return FXCollections.observableArrayList(list);
     }
+    public Attendance getAttendanceById(int id){
+        Session session= HibernateUtils.getFACTORY().openSession();
+        CriteriaBuilder cb=session.getCriteriaBuilder();
+        CriteriaQuery query=cb.createQuery(Attendance.class);
+        Root<Attendance> root=query.from(Attendance.class);
+        query.where(cb.equal(root.get("id").as(Integer.class),id));
 
+        Attendance attendance =(Attendance) session.createQuery(query).getSingleResult();
+        session.close();
+        return attendance;
+    }
 //    public Attendance getAttendance(String studentId,String courseId,String ,){
 //
 //    }

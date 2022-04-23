@@ -161,5 +161,15 @@ public class ScheduleDAO implements DAOInterface<Schedule> {
         return schedule;
 
     }
+    public Schedule getScheduleById(int id){
+        Session session= HibernateUtils.getFACTORY().openSession();
+        CriteriaBuilder cb=session.getCriteriaBuilder();
+        CriteriaQuery query=cb.createQuery(Schedule.class);
+        Root<Schedule>root=query.from(Schedule.class);
+        query.where(cb.equal(root.get("id").as(Integer.class),id));
 
+        Schedule schedule =(Schedule) session.createQuery(query).getSingleResult();
+        session.close();
+        return schedule;
+    }
 }

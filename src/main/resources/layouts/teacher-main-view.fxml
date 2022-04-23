@@ -119,24 +119,6 @@
                   <Insets left="50.0" />
                </padding>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="230.0" onAction="#teacherHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Giáo viên" textFill="#5b5858">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/UsersOutline.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
                 <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#logOutHandler" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Đăng xuất" textFill="#5b5858">
                     <font>
                         <Font size="13.0" />

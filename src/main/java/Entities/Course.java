@@ -16,13 +16,7 @@ public class Course implements Serializable {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "course")
     private Set<Schedule> schedules=new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "ENROLL_COURSE",
-            joinColumns = { @JoinColumn(name = "COURSE_ID",referencedColumnName = "ID") },
-            inverseJoinColumns = { @JoinColumn(name = "STUDENT_ID",referencedColumnName = "ID") }
-    )
-    Set<Student> students = new HashSet<>();
+
 
     public Course(){}
     public Course(String id,String name){
@@ -34,9 +28,7 @@ public class Course implements Serializable {
         this.schedules = schedules;
     }
 
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
+
 
     public void setId(String id) {
         this.id = id;
@@ -50,9 +42,6 @@ public class Course implements Serializable {
         return schedules;
     }
 
-    public Set<Student> getStudents() {
-        return students;
-    }
 
     public String getId() {
         return id;

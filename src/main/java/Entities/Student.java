@@ -36,15 +36,15 @@ public class Student implements Serializable {
 
 
     @ManyToMany(fetch = FetchType.EAGER,mappedBy = "students")
-    private Set<Course> courses=new HashSet<>();
+    private Set<Schedule> schedules=new HashSet<>();
 
     public Student(){}
 
-    public Student(int id,String name,String cmnd,String phone,Date birthday,String email){
+    public Student(int id,String name,String cmnd,int phone,Date birthday,String email){
         this.id=id;
         this.name=name;
         this.cmnd=cmnd;
-        this.phone = Integer.parseInt(phone);
+        this.phone = phone;
         this.birthday=birthday;
         this.email=email;
         isFirst=true;
@@ -52,12 +52,24 @@ public class Student implements Serializable {
         password= BCrypt.hashpw(username,BCrypt.gensalt(12));
     }
 
+    public Student(int id, String name, String cmnd, int phone, Date birthday, String email, String username, String password, boolean isFirst) {
+        this.id = id;
+        this.name = name;
+        this.cmnd = cmnd;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.email = email;
+        this.username = username;
+        this.password = BCrypt.hashpw(password,BCrypt.gensalt(12));
+        this.isFirst = isFirst;
+    }
+
     public void setAttendances(Set<Attendance> attendances) {
         this.attendances = attendances;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setSchedules(Set<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
     public void setFirst(boolean first) {
@@ -104,8 +116,8 @@ public class Student implements Serializable {
         return attendances;
     }
 
-    public Set<Course> getCourses() {
-        return courses;
+    public Set<Schedule> getSchedules() {
+        return schedules;
     }
 
     public int getId() {

@@ -65,6 +65,7 @@ public class LoginController implements Initializable  {
                     window.close();
                     Stage newWindow = new Stage();
                     FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/teacher-main-view.fxml"));
+
                     Parent root= null;
                     try {
                         root = loader.load();
@@ -86,20 +87,39 @@ public class LoginController implements Initializable  {
             if (student!=null){
                 boolean valuate = BCrypt.checkpw(password.getText(), student.getPassword());
                 if(valuate){
-                    Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-                    window.close();
-                    Stage newWindow = new Stage();
-                    FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/student-main-view.fxml"));
-                    Parent root= null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if(student.getIsFirst()){
+                        Stage newWindow = new Stage();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/change-password-dialog.fxml"));
+                        ChangePasswordDialogController controller = new ChangePasswordDialogController();
+                        controller.setValue(student);
+                        loader.setController(controller);
+                        Parent root= null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Scene scene = new Scene(root);
+                        newWindow.setTitle("Đổi mật khẩu");
+                        newWindow.setScene(scene);
+                        newWindow.show();
+                    }else{
+                        Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+                        window.close();
+                        Stage newWindow = new Stage();
+                        FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/student-main-view.fxml"));
+                        Parent root= null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Scene scene = new Scene(root);
+                        newWindow.setTitle("Course Attendance");
+                        newWindow.setScene(scene);
+                        newWindow.show();
                     }
-                    Scene scene = new Scene(root);
-                    newWindow.setTitle("Course Attendance");
-                    newWindow.setScene(scene);
-                    newWindow.show();
+
                 }
                 else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);

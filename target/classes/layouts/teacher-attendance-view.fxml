@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherAttendanceController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <ScrollPane BorderPane.alignment="CENTER">
          <content>
-            <TableView>
+            <TableView fx:id="attendanceTable">
               <columns>
                 <TableColumn fx:id="idCol" prefWidth="69.59994512796402" text="Id" />
                 <TableColumn fx:id="nameCol" prefWidth="180.80004501342773" text="Tên sinh viên" />
@@ -49,4 +49,15 @@
          </padding>
       </HBox>
    </bottom>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#watchHandler" text="Xem" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
 </BorderPane>

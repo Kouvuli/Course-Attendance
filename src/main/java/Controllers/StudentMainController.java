@@ -28,8 +28,6 @@ public class StudentMainController implements Initializable {
     public void attendanceHanler(ActionEvent event) {
     }
 
-    public void courseHandler(ActionEvent event) {
-    }
 
     public void logOutHandler(ActionEvent event) {
         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();

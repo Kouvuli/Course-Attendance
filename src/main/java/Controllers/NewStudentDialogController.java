@@ -63,7 +63,7 @@ public class NewStudentDialogController implements Initializable {
             try {
                 student=studentDAO.getStudentById(Integer.parseInt(studentIdTxt.getText()));
             }catch (Exception exception){
-                Student newStudent = new Student(Integer.parseInt(studentIdTxt.getText()), studentNameTxt.getText(), studentCMNDTxt.getText(), phoneNumberTxt.getText(),Date.from(studentBirthday.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), emailTxt.getText());
+                Student newStudent = new Student(Integer.parseInt(studentIdTxt.getText()), studentNameTxt.getText(), studentCMNDTxt.getText(), Integer.parseInt(phoneNumberTxt.getText()),Date.from(studentBirthday.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), emailTxt.getText());
                 studentDAO.addData(newStudent);
                 Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
                 window.close();
