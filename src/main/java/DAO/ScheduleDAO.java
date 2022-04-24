@@ -135,6 +135,17 @@ public class ScheduleDAO implements DAOInterface<Schedule> {
         session.close();
         return FXCollections.observableArrayList(list);
     }
+    public ObservableList<String> getAllStudentYear(int id){
+        Session session= HibernateUtils.getFACTORY().openSession();
+        CriteriaBuilder cb=session.getCriteriaBuilder();
+        CriteriaQuery query=cb.createQuery(Schedule.class);
+        Root<Schedule>root=query.from(Schedule.class);
+        query.where(cb.equal(root.get("id").as(Integer.class),id));
+        query.select(root.get("year")).distinct(true);
+        List<String> list = session.createQuery(query).getResultList();
+        session.close();
+        return FXCollections.observableArrayList(list);
+    }
     public Schedule isAlreadyExist(String courseId,int teacherId,String dayOfWeek,String shiftStart,String shiftEnd,String term,String year){
         Session session=HibernateUtils.getFACTORY().openSession();
         CriteriaBuilder cb=session.getCriteriaBuilder();

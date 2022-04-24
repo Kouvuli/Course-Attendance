@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,10 +16,10 @@ import java.util.ResourceBundle;
 
 public class ChangePasswordDialogController implements Initializable {
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
-    private TextField retypePassword;
+    private PasswordField retypePassword;
 
     private Student oldStudent;
     @FXML

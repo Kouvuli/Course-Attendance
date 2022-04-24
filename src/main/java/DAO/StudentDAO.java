@@ -55,7 +55,9 @@ public class StudentDAO implements DAOInterface<Student> {
         student.setEmail(newData.getEmail());
         student.setName(newData.getName());
         student.setPhone(newData.getPhone());
-
+        student.setUsername(newData.getUsername());
+        student.setPassword(newData.getPassword());
+        student.setFirst(newData.getIsFirst());
         session.saveOrUpdate(student);
         transaction.commit();
         session.close();

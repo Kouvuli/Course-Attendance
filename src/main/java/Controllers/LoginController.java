@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable  {
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private TextField username;
@@ -65,7 +66,9 @@ public class LoginController implements Initializable  {
                     window.close();
                     Stage newWindow = new Stage();
                     FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/teacher-main-view.fxml"));
-
+                    TeacherMainController controller=new TeacherMainController();
+                    controller.setValue(Integer.parseInt(username.getText()));
+                    loader.setController(controller);
                     Parent root= null;
                     try {
                         root = loader.load();
@@ -107,7 +110,10 @@ public class LoginController implements Initializable  {
                         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
                         window.close();
                         Stage newWindow = new Stage();
-                        FXMLLoader loader=new FXMLLoader(getClass().getResource("/layouts/student-main-view.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/student-main-view.fxml"));
+                        StudentMainController controller=new StudentMainController();
+                        controller.setValue(Integer.parseInt(username.getText()));
+                        loader.setController(controller);
                         Parent root= null;
                         try {
                             root = loader.load();

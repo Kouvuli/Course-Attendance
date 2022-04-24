@@ -1,5 +1,7 @@
 package Controllers;
 
+import DAO.TeacherDAO;
+import Entities.Teacher;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,12 +33,13 @@ public class TeacherMainController implements Initializable {
     @FXML
     private Label usernameLabel;
 
-    private String username;
-    private String userId;
+    private int userId;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+        userIdLabel.setText(String.valueOf(userId));
+        TeacherDAO dao = new TeacherDAO();
+        Teacher teacher = dao.getTeacherById(userId);
+        usernameLabel.setText(teacher.getName());
     }
 
     public void courseHandler(ActionEvent event) throws IOException {
@@ -58,8 +61,6 @@ public class TeacherMainController implements Initializable {
 
     }
 
-    public void attendanceHanler(ActionEvent event) {
-    }
 
     public void studentHandler(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/teacher-student-view.fxml"));
@@ -87,5 +88,8 @@ public class TeacherMainController implements Initializable {
     }
 
     public void teacherHandler(ActionEvent event) {
+    }
+    public void setValue(int id){
+        this.userId=id;
     }
 }

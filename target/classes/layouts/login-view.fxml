@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -31,7 +32,7 @@
                                     </rowConstraints>
                                     <children>
                                         <TextField fx:id="username" GridPane.columnIndex="1" />
-                                        <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đăng nhập">
                                             <GridPane.margin>
                                                 <Insets right="10.0" />

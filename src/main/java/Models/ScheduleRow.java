@@ -16,6 +16,22 @@ public class ScheduleRow extends Schedule {
     private Button deleteBtn;
     public ScheduleRow() {
     }
+    public ScheduleRow(int id, Date dateStart, Date dateEnd, String dayOfWeek, String shiftStart, String shiftEnd, String room, Teacher teacher, Course course,String name,String term,String year,Button attendancesBtn) {
+        this.setId(id);
+        this.setDateStart(dateStart);
+        this.setDateEnd(dateEnd);
+        this.setDayOfWeek(dayOfWeek);
+        this.setShiftStart(shiftStart);
+        this.setShiftEnd(shiftEnd);
+        this.setRoom(room);
+        this.setTeacher(teacher);
+        this.setCourse(course);
+        this.setTerm(term);
+        this.setYear(year);
+        this.attendancesBtn=attendancesBtn;
+        this.name=name;
+
+    }
     public ScheduleRow(int id, Date dateStart, Date dateEnd, String dayOfWeek, String shiftStart, String shiftEnd, String room, Teacher teacher, Course course,String name,String term,String year,Button attendancesBtn,Button editBtn,Button deleteBtn) {
         this.setId(id);
         this.setDateStart(dateStart);
