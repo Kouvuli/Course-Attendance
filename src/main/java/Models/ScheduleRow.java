@@ -14,6 +14,7 @@ public class ScheduleRow extends Schedule {
     private Button attendancesBtn;
     private Button editBtn;
     private Button deleteBtn;
+    private Button addNewBtn;
     public ScheduleRow() {
     }
     public ScheduleRow(int id, Date dateStart, Date dateEnd, String dayOfWeek, String shiftStart, String shiftEnd, String room, Teacher teacher, Course course,String name,String term,String year,Button attendancesBtn) {
@@ -32,7 +33,7 @@ public class ScheduleRow extends Schedule {
         this.name=name;
 
     }
-    public ScheduleRow(int id, Date dateStart, Date dateEnd, String dayOfWeek, String shiftStart, String shiftEnd, String room, Teacher teacher, Course course,String name,String term,String year,Button attendancesBtn,Button editBtn,Button deleteBtn) {
+    public ScheduleRow(int id, Date dateStart, Date dateEnd, String dayOfWeek, String shiftStart, String shiftEnd, String room, Teacher teacher, Course course,String name,String term,String year,Button attendancesBtn,Button editBtn,Button deleteBtn,Button addNewBtn) {
         this.setId(id);
         this.setDateStart(dateStart);
         this.setDateEnd(dateEnd);
@@ -48,7 +49,11 @@ public class ScheduleRow extends Schedule {
         this.attendancesBtn=attendancesBtn;
         this.editBtn=editBtn;
         this.deleteBtn=deleteBtn;
+        this.addNewBtn=addNewBtn;
+    }
 
+    public void setAddNewBtn(Button addNewBtn) {
+        this.addNewBtn = addNewBtn;
     }
 
     public void setEditBtn(Button editBtn) {
@@ -70,6 +75,10 @@ public class ScheduleRow extends Schedule {
     }
     public Button getAttendancesBtn() {
         return attendancesBtn;
+    }
+
+    public Button getAddNewBtn() {
+        return addNewBtn;
     }
 
     public Button getEditBtn() {

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherScheduleController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../styles/style.css" fx:controller="Controllers.TeacherScheduleController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>

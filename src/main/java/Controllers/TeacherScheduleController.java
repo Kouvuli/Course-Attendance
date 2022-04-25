@@ -154,7 +154,7 @@ public class TeacherScheduleController implements Initializable {
     public TableView<ScheduleRow> createTable() {
 
         TableView<ScheduleRow> table = new TableView<>();
-
+        table.getStyleClass().add("center-column");
         TableColumn<ScheduleRow, Integer> idCol = new TableColumn<>("Id");
         idCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, Integer>("id"));
         idCol.setPrefWidth(52);
@@ -195,7 +195,10 @@ public class TeacherScheduleController implements Initializable {
         TableColumn<ScheduleRow, Button> deleteCol = new TableColumn<>("Xóa");
         deleteCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, Button>("deleteBtn"));
         deleteCol.setPrefWidth(100);
-        table.getColumns().addAll(idCol, nameCol, dateStartCol,dateEndCol,dayOfWeekCol,timeStartCol,timeEndCol,roomCol,termCol,yearCol,attendancesBtnCol,editCol,deleteCol);
+        TableColumn<ScheduleRow, Button> addNewBtnCol = new TableColumn<>("Thêm SV");
+        addNewBtnCol.setCellValueFactory(new PropertyValueFactory<ScheduleRow, Button>("addNewBtn"));
+        addNewBtnCol.setPrefWidth(100);
+        table.getColumns().addAll(idCol, nameCol, dateStartCol,dateEndCol,dayOfWeekCol,timeStartCol,timeEndCol,roomCol,termCol,yearCol,attendancesBtnCol,editCol,deleteCol,addNewBtnCol);
 
         return table;
     }
@@ -231,10 +234,13 @@ public class TeacherScheduleController implements Initializable {
             Button attendancesBtn=new Button();
             attendancesBtn.setGraphic((imageView3));
             addAttendanceBtnHandler(attendancesBtn,i);
+            Button addNewBtn=new Button();
+            addNewBtn.setText("Thêm");
+            addNewBtnHandler(addNewBtn,i);
             ScheduleRow r = new ScheduleRow(i.getId(), i.getDateStart(),
                     i.getDateEnd(), i.getDayOfWeek(), i.getShiftStart(),
                     i.getShiftEnd(), i.getRoom(), i.getTeacher(), i.getCourse(),
-                    i.getCourse().getName(),i.getTerm(),i.getYear(),attendancesBtn,editBtn,deleteBtn);
+                    i.getCourse().getName(),i.getTerm(),i.getYear(),attendancesBtn,editBtn,deleteBtn,addNewBtn);
             scheduleRows.add(r);
 
         });
@@ -256,6 +262,26 @@ public class TeacherScheduleController implements Initializable {
         sortedData.comparatorProperty().bind(view.comparatorProperty());
         view.setItems(sortedData);
         return view;
+    }
+
+    private void addNewBtnHandler(Button addNewBtn, Schedule schedule) {
+        addNewBtn.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/new-student-schedule.fxml"));
+            NewStudentScheduleController controller = new NewStudentScheduleController();
+            controller.setValue(schedule.getId());
+            loader.setController(controller);
+            Stage window=new Stage();
+            Parent root= null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene=new Scene(root);
+            window.setTitle("Thêm");
+            window.setScene(scene);
+            window.show();
+        });
     }
 
     private void addDeleteBtnHandler(Button deleteBtn, Schedule schedule) {

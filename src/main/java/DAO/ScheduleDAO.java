@@ -2,6 +2,7 @@ package DAO;
 
 import Entities.Course;
 import Entities.Schedule;
+import Entities.Student;
 import Interfaces.DAOInterface;
 import Utils.HibernateUtils;
 import javafx.collections.FXCollections;
@@ -60,7 +61,16 @@ public class ScheduleDAO implements DAOInterface<Schedule> {
         session.close();
         return 0;
     }
-
+    public void updateStudentSet(int id,Student newStudents){
+        Session session=HibernateUtils.getFACTORY().openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        Transaction transaction=session.beginTransaction();
+        Schedule schedule=session.get(Schedule.class,id);
+        schedule.getStudents().add(newStudents);
+        session.saveOrUpdate(schedule);
+        transaction.commit();
+        session.close();
+    }
     @Override
     public ObservableList<Schedule> getAll() {
         Session session= HibernateUtils.getFACTORY().openSession();

@@ -187,7 +187,7 @@ public class TeacherStudentController implements Initializable {
     public TableView<StudentRow> createTable() {
 
         TableView<StudentRow> table = new TableView<>();
-
+        table.getStyleClass().add("center-column");
         TableColumn<StudentRow, String> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<StudentRow, String>("id"));
         idCol.setPrefWidth(100);

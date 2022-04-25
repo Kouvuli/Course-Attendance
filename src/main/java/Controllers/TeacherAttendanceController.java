@@ -213,7 +213,7 @@ public class TeacherAttendanceController implements Initializable {
         week13Col.setCellValueFactory(entry-> new SimpleObjectProperty<CheckBox>(entry.getValue().getWeeks()[12]));
         week14Col.setCellValueFactory(entry-> new SimpleObjectProperty<CheckBox>(entry.getValue().getWeeks()[13]));
         week15Col.setCellValueFactory(entry-> new SimpleObjectProperty<CheckBox>(entry.getValue().getWeeks()[14]));
-
+        attendanceTable.getStyleClass().add("center-column");
         attendanceTable.setItems(FXCollections.observableArrayList(attendanceRowList));
 
     }

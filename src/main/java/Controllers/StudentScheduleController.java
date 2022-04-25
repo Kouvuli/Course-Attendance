@@ -237,7 +237,7 @@ public class StudentScheduleController implements Initializable {
         });
         SortedList<ScheduleRow> sortedData = new SortedList<>(filteredListData);
         sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-
+        tableView.getStyleClass().add("center-column");
         tableView.setItems(sortedData);
     }
     private void addAttendanceBtnHandler(Button attendancesBtn, Schedule schedule) {

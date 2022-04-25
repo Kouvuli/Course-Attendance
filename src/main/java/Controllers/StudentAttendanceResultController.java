@@ -100,7 +100,7 @@ public class StudentAttendanceResultController implements Initializable {
         statusCol.setCellValueFactory(new PropertyValueFactory<AttendanceResultRow,String>("status"));
         shiftStartCol.setCellValueFactory(new PropertyValueFactory<AttendanceResultRow,String>("shiftStart"));
         shiftEndCol.setCellValueFactory(new PropertyValueFactory<AttendanceResultRow,String>("shiftEnd"));
-
+        attendanceTable.getStyleClass().add("center-column");
         attendanceTable.setItems(FXCollections.observableArrayList(resultList));
 
     }

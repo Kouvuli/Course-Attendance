@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherCourseController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../styles/style.css" fx:controller="Controllers.TeacherCourseController">
       <top>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
