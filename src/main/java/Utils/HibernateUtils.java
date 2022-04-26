@@ -32,6 +32,7 @@ public class HibernateUtils {
         conf.addAnnotatedClass(Teacher.class);
         conf.addAnnotatedClass(Schedule.class);
         conf.addAnnotatedClass(Attendance.class);
+        conf.addAnnotatedClass(EnrollCourse.class);
 
 //        conf.addAnnotatedClass(Role.class);
 //        conf.addAnnotatedClass(UserRole.class);

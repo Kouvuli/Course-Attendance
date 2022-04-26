@@ -48,11 +48,12 @@ public class NewStudentScheduleController implements Initializable {
                 scheduleDAO.updateStudentSet(scheduleId,student);
 
             }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thành công");
+            alert.setContentText("Thêm thành công");
+            alert.showAndWait();
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thành công");
-        alert.setContentText("Thêm thành công");
-        alert.showAndWait();
+
     }
 
     @FXML
@@ -62,7 +63,7 @@ public class NewStudentScheduleController implements Initializable {
         controller.setValue(scheduleId);
         loader.setController(controller);
         Stage window=new Stage();
-//        window.initModality(Modality.APPLICATION_MODAL);
+        window.initModality(Modality.APPLICATION_MODAL);
         Parent root= null;
         try {
             root = loader.load();

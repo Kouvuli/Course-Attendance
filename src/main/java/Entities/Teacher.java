@@ -2,6 +2,8 @@ package Entities;
 
 
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -30,6 +32,17 @@ public class Teacher implements Serializable {
 
 
     public Teacher(){}
+
+    public Teacher(int id, String name, String cmnd, int phone, int salary, String email, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.cmnd = cmnd;
+        this.phone = phone;
+        this.salary = salary;
+        this.email = email;
+        this.username = username;
+        this.password = BCrypt.hashpw(password,BCrypt.gensalt(12));;
+    }
 
     public void setId(int id) {
         this.id = id;

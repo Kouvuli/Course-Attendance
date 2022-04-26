@@ -34,6 +34,8 @@ public class Student implements Serializable {
     @OneToMany(fetch = FetchType.EAGER,mappedBy="student")
     private Set<Attendance> attendances;
 
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "student")
+    private Set<EnrollCourse> enrollCourses;
 
     @ManyToMany(fetch = FetchType.EAGER,mappedBy = "students")
     private Set<Schedule> schedules=new HashSet<>();
@@ -62,6 +64,33 @@ public class Student implements Serializable {
         this.username = username;
         this.password = BCrypt.hashpw(password,BCrypt.gensalt(12));
         this.isFirst = isFirst;
+    }
+
+    public Student(int id, String name, String cmnd, int phone, Date birthday, String email, String username, String password, boolean isFirst, Set<Attendance> attendances, Set<Schedule> schedules) {
+        this.id = id;
+        this.name = name;
+        this.cmnd = cmnd;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.isFirst = isFirst;
+        this.attendances = attendances;
+        this.schedules = schedules;
+    }
+
+    public void addSchedule(Schedule schedule) {
+        this.getSchedules().add(schedule);
+        schedule.getStudents().add(this);
+    }
+    public void removeSchedule(Schedule schedule) {
+        this.schedules.remove(schedule);
+        schedule.getStudents().remove(this);
+    }
+
+    public void setEnrollCourses(Set<EnrollCourse> enrollCourses) {
+        this.enrollCourses = enrollCourses;
     }
 
     public void setAttendances(Set<Attendance> attendances) {
@@ -106,6 +135,10 @@ public class Student implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<EnrollCourse> getEnrollCourses() {
+        return enrollCourses;
     }
 
     public boolean getIsFirst() {

@@ -30,14 +30,28 @@ public class StudentDAO implements DAOInterface<Student> {
         Session session=HibernateUtils.getFACTORY().openSession();
         Transaction transaction = session.beginTransaction();
         AttendanceDAO attendanceDAO=new AttendanceDAO();
-        for(Attendance attendance:data.getAttendances()){
-            attendanceDAO.delData(attendance);
-        }
 
+        ScheduleDAO scheduleDAO=new ScheduleDAO();
+        EnrollCourseDAO enrollCourseDAO=new EnrollCourseDAO();
         Student student = session.get(Student.class, data.getId());
+
         if (student != null) {
+            for(Attendance attendance:student.getAttendances()){
+                attendanceDAO.delData(attendance);
+            }
+//            student.getSchedules().removeAll(student.getSchedules());
+            for (EnrollCourse enrollCourse:student.getEnrollCourses()){
+                enrollCourseDAO.delData(enrollCourse);
+            }
+//            for (Schedule schedule: student.getSchedules()){
+////                Schedule a = session.get(Schedule.class, schedule.getId());
+//                student.removeSchedule(schedule);
+//
+////                scheduleDAO.delData(a);
+//            }
 
             session.delete(student);
+
         }
         transaction.commit();
         session.close();

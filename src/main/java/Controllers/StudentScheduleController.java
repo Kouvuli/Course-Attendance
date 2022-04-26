@@ -247,6 +247,7 @@ public class StudentScheduleController implements Initializable {
             controller.setValue(studentId,schedule.getId(), schedule.getDateStart(),schedule.getShiftStart(),schedule.getShiftEnd(),schedule.getAttendances());
             loader.setController(controller);
             Stage window=new Stage();
+            window.initModality(Modality.APPLICATION_MODAL);
             Parent root= null;
             try {
                 root = loader.load();

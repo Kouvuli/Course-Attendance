@@ -28,7 +28,6 @@ public class AttendanceDAO implements DAOInterface<Attendance> {
 
     @Override
     public int delData(Attendance data) {
-
         Session session=HibernateUtils.getFACTORY().openSession();
         Transaction transaction=session.beginTransaction();
         Attendance attendance = session.get(Attendance.class, data.getId());

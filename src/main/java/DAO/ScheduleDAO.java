@@ -1,5 +1,6 @@
 package DAO;
 
+import Entities.Attendance;
 import Entities.Course;
 import Entities.Schedule;
 import Entities.Student;
@@ -33,6 +34,10 @@ public class ScheduleDAO implements DAOInterface<Schedule> {
         Session session=HibernateUtils.getFACTORY().openSession();
         Transaction transaction=session.beginTransaction();
         Schedule schedule = session.get(Schedule.class, data.getId());
+        AttendanceDAO attendanceDAO=new AttendanceDAO();
+        for(Attendance attendance: schedule.getAttendances()){
+            attendanceDAO.delData(attendance);
+        }
         if (schedule != null) {
 
             session.delete(schedule);

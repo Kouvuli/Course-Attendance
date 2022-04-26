@@ -1,7 +1,9 @@
 package Controllers;
 
 import DAO.StudentDAO;
+import DAO.TeacherDAO;
 import Entities.Student;
+import Entities.Teacher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +23,7 @@ public class ChangePasswordDialogController implements Initializable {
     @FXML
     private PasswordField retypePassword;
 
-    private Student oldStudent;
+    private int id;
     @FXML
     void handleCancleButton(ActionEvent event) {
         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -30,20 +32,51 @@ public class ChangePasswordDialogController implements Initializable {
 
     @FXML
     void applyHandler(ActionEvent event) {
-        StudentDAO studentDAO = new StudentDAO();
         if(isValidInput()){
-            if(password.getText().trim().equals(retypePassword.getText().trim())){
-                Student newStudent=new Student(oldStudent.getId(),oldStudent.getName(),oldStudent.getCmnd(),oldStudent.getPhone(),oldStudent.getBirthday(),oldStudent.getEmail(),oldStudent.getUsername(),password.getText(),false);
-                studentDAO.updateData(oldStudent,newStudent);
-                Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-                window.close();
+            StudentDAO studentDAO=new StudentDAO();
+            TeacherDAO teacherDAO=new TeacherDAO();
+            Teacher oldTeacher=null;
+            Student oldStudent=null;
+            try {
+                oldTeacher=teacherDAO.getTeacherById(id);
+
+            }catch (Exception e){
+                try {
+
+                    oldStudent=studentDAO.getStudentById(id);
+                }catch (Exception exception){
+
+                }
             }
-            else{
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Lỗi");
-                alert.setContentText("Mật khẩu nhập lại không khớp!");
-                alert.showAndWait();
+            if(oldTeacher!=null){
+                if(password.getText().trim().equals(retypePassword.getText().trim())){
+                    Teacher newTeacher=new Teacher(oldTeacher.getId(),oldTeacher.getName(),oldStudent.getCmnd(),oldStudent.getPhone(),oldTeacher.getSalary(),oldTeacher.getEmail(),oldTeacher.getUsername(),password.getText());
+                    teacherDAO.updateData(oldTeacher,newTeacher);
+                    Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+                    window.close();
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Lỗi");
+                    alert.setContentText("Mật khẩu nhập lại không khớp!");
+                    alert.showAndWait();
+                }
             }
+            else if(oldStudent!=null){
+                if(password.getText().trim().equals(retypePassword.getText().trim())){
+                    Student newStudent=new Student(oldStudent.getId(),oldStudent.getName(),oldStudent.getCmnd(),oldStudent.getPhone(),oldStudent.getBirthday(),oldStudent.getEmail(),oldStudent.getUsername(),password.getText(),false);
+                    studentDAO.updateData(oldStudent,newStudent);
+                    Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+                    window.close();
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Lỗi");
+                    alert.setContentText("Mật khẩu nhập lại không khớp!");
+                    alert.showAndWait();
+                }
+            }
+
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Lỗi");
@@ -58,8 +91,8 @@ public class ChangePasswordDialogController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    public void setValue(Student oldStudent){
-        this.oldStudent=oldStudent;
+    public void setValue(int id){
+        this.id=id;
     }
     public boolean isValidInput(){
         if(password.getText().trim().isEmpty()){

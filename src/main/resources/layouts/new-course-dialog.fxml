@@ -13,9 +13,9 @@
     <center>
         <VBox>
             <children>
-                <HBox layoutX="10.0" layoutY="10.0" spacing="47.0">
+                <HBox layoutX="10.0" layoutY="10.0" spacing="53.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên môn học">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID môn học">
                             <HBox.margin>
                                 <Insets top="2.0" />
                             </HBox.margin>

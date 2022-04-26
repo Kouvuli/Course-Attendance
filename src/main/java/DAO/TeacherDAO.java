@@ -32,6 +32,21 @@ public class TeacherDAO implements DAOInterface<Teacher> {
 
     @Override
     public int updateData(Teacher oldData, Teacher newData) {
+        Session session=HibernateUtils.getFACTORY().openSession();
+        Transaction transaction=session.beginTransaction();
+        Teacher teacher=session.get(Teacher.class, oldData.getId());
+        teacher.setId(newData.getId());
+        teacher.setCmnd(newData.getCmnd());
+        teacher.setEmail(newData.getEmail());
+        teacher.setName(newData.getName());
+        teacher.setPhone(newData.getPhone());
+        teacher.setSalary(newData.getSalary());
+        teacher.setUsername(newData.getUsername());
+        teacher.setPassword(newData.getPassword());
+        session.saveOrUpdate(teacher);
+        transaction.commit();
+        session.close();
+
         return 0;
     }
 

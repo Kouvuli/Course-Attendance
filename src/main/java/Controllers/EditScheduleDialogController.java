@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -61,15 +62,23 @@ public class EditScheduleDialogController implements Initializable {
     }
     @FXML
     void confirmHandler(ActionEvent event) {
-        ScheduleDAO dao = new ScheduleDAO();
-        Schedule newSchedule=new Schedule(id,Date.from(dateStartPicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),Date.from(dateEndPicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),dayOfWeekTxt.getText(), shiftStartTxt.getText(), shiftEndTxt.getText(), roomTxt.getText(), termTxt.getText(), yearTxt.getText());
-        dao.updateData(oldSchedule,newSchedule);
-        Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.close();
+        if(!isInputValid()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setContentText("Dữ liệu nhập không hợp lệ!");
+            alert.showAndWait();
+        }
+        else{
+            ScheduleDAO dao = new ScheduleDAO();
+            Schedule newSchedule=new Schedule(id,Date.from(dateStartPicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),Date.from(dateEndPicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),dayOfWeekTxt.getText(), shiftStartTxt.getText(), shiftEndTxt.getText(), roomTxt.getText(), termTxt.getText(), yearTxt.getText());
+            dao.updateData(oldSchedule,newSchedule);
+            Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.close();
+        }
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         LocalDate a= Instant.ofEpochMilli(dateStart.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate b= Instant.ofEpochMilli(dateEnd.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
         dateStartPicker.setValue(a);
@@ -94,5 +103,27 @@ public class EditScheduleDialogController implements Initializable {
         this.room = schedule.getRoom();
         this.term = schedule.getTerm();
         this.year = schedule.getYear();
+    }
+    public boolean isInputValid(){
+        if (dayOfWeekTxt.getText().isEmpty()){
+            return false;
+        }
+        else if(termTxt.getText().isEmpty()){
+            return false;
+        }
+        else if(shiftEndTxt.getText().isEmpty()){
+            return false;
+
+        }
+        else if (shiftStartTxt.getText().isEmpty()){
+            return false;
+        }
+        else if (roomTxt.getText().isEmpty()){
+            return false;
+        }
+        else if (yearTxt.getText().isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

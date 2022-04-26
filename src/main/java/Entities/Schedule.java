@@ -37,6 +37,9 @@ public class Schedule implements Serializable {
     @OneToMany(fetch = FetchType.EAGER,mappedBy="schedule")
     private Set<Attendance> attendances=new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "student")
+    private Set<EnrollCourse> enrollCourses=new HashSet<>();
+
     @ManyToOne
     @JoinColumn(name = "TEACHER_ID", referencedColumnName = "ID")
     private Teacher teacher;
@@ -45,7 +48,7 @@ public class Schedule implements Serializable {
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
     private Course course;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "ENROLL_COURSE",
             joinColumns = { @JoinColumn(name = "SCHEDULE_ID",referencedColumnName = "ID") },
@@ -75,6 +78,10 @@ public class Schedule implements Serializable {
         this.room=room;
         this.term=term;
         this.year=year;
+    }
+
+    public void setEnrollCourses(Set<EnrollCourse> enrollCourses) {
+        this.enrollCourses = enrollCourses;
     }
 
     public void setStudents(Set<Student> students) {
@@ -119,6 +126,10 @@ public class Schedule implements Serializable {
 
     public void setAttendances(Set<Attendance> attendances) {
         this.attendances = attendances;
+    }
+
+    public Set<EnrollCourse> getEnrollCourses() {
+        return enrollCourses;
     }
 
     public Set<Student> getStudents() {

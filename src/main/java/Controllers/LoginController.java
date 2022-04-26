@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -27,20 +28,35 @@ public class LoginController implements Initializable  {
 
     @FXML
     private TextField username;
-
+    private Student student=null;
+    private Teacher teacher=null;
     @FXML
     void handleCancleButton(ActionEvent event) {
         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
         window.close();
     }
-
+    @FXML
+    void changePasswordHandler(ActionEvent event) {
+        Stage newWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/verify-username-password-dialog.fxml"));
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+        Parent root= null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        newWindow.setTitle("Đổi mật khẩu");
+        newWindow.setScene(scene);
+        newWindow.show();
+    }
     @FXML
     void handleLoginButton(ActionEvent event) {
         if (isInputValid()){
             StudentDAO studentDAO=new StudentDAO();
             TeacherDAO teacherDAO=new TeacherDAO();
-            Student student=null;
-            Teacher teacher=null;
+
             try {
                 teacher=teacherDAO.getTeacherByUsername(username.getText());
 
@@ -94,7 +110,8 @@ public class LoginController implements Initializable  {
                         Stage newWindow = new Stage();
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/layouts/change-password-dialog.fxml"));
                         ChangePasswordDialogController controller = new ChangePasswordDialogController();
-                        controller.setValue(student);
+                        newWindow.initModality(Modality.APPLICATION_MODAL);
+                        controller.setValue(student.getId());
                         loader.setController(controller);
                         Parent root= null;
                         try {

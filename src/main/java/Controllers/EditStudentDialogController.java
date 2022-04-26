@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -51,11 +52,19 @@ public class EditStudentDialogController implements Initializable {
 
     @FXML
     void confirmHandler(ActionEvent event) {
-        StudentDAO studentDAO = new StudentDAO();
-        Student newStudent=new Student(id,studentNameTxt.getText(),studentCMNDTxt.getText(),Integer.parseInt(phoneNumberTxt.getText()) ,Date.from(studentBirthday.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),emailTxt.getText());
-        studentDAO.updateData(oldStudent,newStudent);
-        Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.close();
+        if(!isInputValid()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setContentText("Dữ liệu nhập không hợp lệ!");
+            alert.showAndWait();
+        }else{
+            StudentDAO studentDAO = new StudentDAO();
+            Student newStudent=new Student(id,studentNameTxt.getText(),studentCMNDTxt.getText(),Integer.parseInt(phoneNumberTxt.getText()) ,Date.from(studentBirthday.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),emailTxt.getText());
+            studentDAO.updateData(oldStudent,newStudent);
+            Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.close();
+        }
+
 
     }
 
@@ -78,5 +87,26 @@ public class EditStudentDialogController implements Initializable {
         this.cmnd = student.getCmnd();
         this.email = student.getEmail();
         this.phone = student.getPhone();
+    }
+    public boolean isInputValid(){
+        if(studentCMNDTxt.getText().isEmpty()){
+            return false;
+        }
+        else if(studentNameTxt.getText().isEmpty()){
+            return false;
+        }
+        else if (studentBirthday.getValue()==null){
+            return false;
+        }
+        else if(phoneNumberTxt.getText().isEmpty()){
+            return false;
+        }
+        else if(emailTxt.getText().isEmpty()){
+            return false;
+
+        }else{
+
+            return true;
+        }
     }
 }

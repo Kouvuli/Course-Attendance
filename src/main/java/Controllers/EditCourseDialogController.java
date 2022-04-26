@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -39,11 +40,19 @@ public class EditCourseDialogController implements Initializable {
 
     @FXML
     void confirmHandler(ActionEvent event) {
-        CourseDAO dao = new CourseDAO();
-        Course newCourse=new Course(id,courseName.getText());
-        dao.updateData(oldCourse,newCourse);
-        Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.close();
+        if(!isValidInput()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setContentText("Dữ liệu nhập không hợp lệ!");
+            alert.showAndWait();
+        }
+        else{
+            CourseDAO dao = new CourseDAO();
+            Course newCourse=new Course(id,courseName.getText());
+            dao.updateData(oldCourse,newCourse);
+            Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.close();
+        }
     }
 
     public void setValue(String id,String name){
@@ -52,5 +61,11 @@ public class EditCourseDialogController implements Initializable {
         this.id=id;
         this.name=name;
 
+    }
+    public boolean isValidInput(){
+        if(courseName.getText().isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

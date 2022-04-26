@@ -271,6 +271,7 @@ public class TeacherScheduleController implements Initializable {
             controller.setValue(schedule.getId());
             loader.setController(controller);
             Stage window=new Stage();
+            window.initModality(Modality.APPLICATION_MODAL);
             Parent root= null;
             try {
                 root = loader.load();
@@ -299,6 +300,7 @@ public class TeacherScheduleController implements Initializable {
             controller.setValue(schedule.getId(), schedule.getDateStart(),schedule.getAttendances());
             loader.setController(controller);
             Stage window=new Stage();
+            window.initModality(Modality.APPLICATION_MODAL);
             Parent root= null;
             try {
                 root = loader.load();

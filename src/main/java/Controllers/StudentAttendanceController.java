@@ -201,6 +201,8 @@ public class StudentAttendanceController implements Initializable {
         LocalTime timeNow=LocalTime.now();
         for (AttendanceRow r:attendanceRowList){
             for (int i=0;i<datesMark.length-1;i++){
+                boolean a=isWithinRange(dateNow,datesMark[i],datesMark[i+1]);
+                boolean b=isTimeWithinRange(timeNow,shiftMark[Integer.parseInt(shiftStart)-1],shiftMark[Integer.parseInt(shiftEnd)-1]);
                 if (isWithinRange(dateNow,datesMark[i],datesMark[i+1])&& isTimeWithinRange(timeNow,shiftMark[Integer.parseInt(shiftStart)-1],shiftMark[Integer.parseInt(shiftEnd)-1])){
                     r.getWeeks()[i].setDisable(false);
                 }
@@ -238,6 +240,8 @@ public class StudentAttendanceController implements Initializable {
         return null;
     }
     public boolean isTimeWithinRange(LocalTime time,LocalTime startTime,LocalTime endTIme){
+        boolean a=time.isAfter(startTime);
+        boolean b=endTIme.isAfter(time);
         if(time.isAfter(startTime)&&endTIme.isAfter(time)){
             return true;
         }
@@ -266,8 +270,12 @@ public class StudentAttendanceController implements Initializable {
             datesMark[i] = datesMark[0].plus(7 * i, ChronoUnit.DAYS);
         }
         shiftMark[0] = LocalTime.of(7,30);
+//        shiftMark[6]=LocalTime.of(12,30);
         for (int i = 1; i <= 11; i++) {
-            shiftMark[i] = shiftMark[i-1].plusMinutes(45 );
+            shiftMark[i] = shiftMark[i-1].plusMinutes(50 );
         }
+//        for (int i = 7; i <= 11; i++) {
+//            shiftMark[i] = shiftMark[i-1].plusMinutes(45 );
+//        }
     }
 }
